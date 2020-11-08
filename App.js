@@ -4,6 +4,7 @@ import {ScrollView, View} from 'react-native';
 import SampleComponent from './SampleComponent';
 import SampleReactNativeComponent from './SampleReactNativeComponent';
 import MateriFlexBox from './MateriFlexBox';
+import PositionReactNative from './PositionReactNative';
 
 // functional component
 const App = () => {
@@ -12,7 +13,8 @@ const App = () => {
       <ScrollView>
         {/* <SampleComponent /> */}
         {/* <SampleReactNativeComponent /> */}
-        <MateriFlexBox />
+        {/* <MateriFlexBox /> */}
+        <PositionReactNative />
       </ScrollView>
     </View>
   );
