@@ -2,7 +2,34 @@ import React, { Component } from 'react';
 import {Image, Text, View} from 'react-native';
 
 class FlexBox extends Component {
+    constructor(props) {
+        super(props);
+        console.log('==> constructor');
+        this.state = {
+            subscriber: 200
+        }
+    }
+
+    componentDidMount() {
+        console.log('==> componentDidMount');
+        setTimeout(() => {
+            this.setState({
+                subscriber: 400
+            })
+        }, 2000)
+    }
+
+    // proses did update ini muncul ketika ada perubahan pada state
+    componentDidUpdate() {
+        console.log('==> componentDidUpdate');
+    }
+
+    componentWillUnmount() {
+        console.log('==> componentWillUnmount')
+    }
+
     render() {
+        console.log('==> render');
         return (
             <View>
                 <View style={{flexDirection: 'row', backgroundColor: '#c8d6e5', alignItems: 'center', justifyContent: 'space-between'}}>
@@ -23,7 +50,7 @@ class FlexBox extends Component {
                     <Image source={require('../../assets/images/anonymouse.jpeg')} style={{width: 100, height: 100, borderRadius: 50, marginRight: 20}} />
                     <View>
                         <Text style={{fontSize: 20, fontWeight: 'bold'}}>Anonymouse</Text>
-                        <Text>100 ribu subscriber</Text>
+                        <Text>{this.state.subscriber} ribu subscriber</Text>
                     </View>
                 </View>
             </View>
