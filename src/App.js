@@ -9,6 +9,7 @@ import PropsDinamis from './pages/PropsDinamis';
 import StateDinamis from './pages/StateDinamis';
 import Communications from './pages/Communications';
 import ReactNativeSVG from './pages/ReactNativeSVG';
+import CallAPIVanila from './pages/CallApiVanila';
 
 // functional component
 const App = () => {
@@ -29,7 +30,8 @@ const App = () => {
         {/* <PropsDinamis /> */}
         {/* <StateDinamis /> */}
         {/* <Communications /> */}
-        <ReactNativeSVG />
+        {/* <ReactNativeSVG /> */}
+        <CallAPIVanila />
       </ScrollView>
     </View>
   );
