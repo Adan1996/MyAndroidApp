@@ -7,6 +7,7 @@ import FlexBox from './pages/FlexBox';
 import Position from './pages/Position';
 import PropsDinamis from './pages/PropsDinamis';
 import StateDinamis from './pages/StateDinamis';
+import Communications from './pages/Communications';
 
 // functional component
 const App = () => {
@@ -25,7 +26,8 @@ const App = () => {
         {/* {isShow && <FlexBox />} */}
         {/* <Position /> */}
         {/* <PropsDinamis /> */}
-        <StateDinamis />
+        {/* <StateDinamis /> */}
+        <Communications />
       </ScrollView>
     </View>
   );
