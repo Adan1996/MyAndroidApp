@@ -1,8 +1,8 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import AndroidSecurity from './Android-Securitry.jpg';
+import AndroidSecurity from '../../assets/images/Android-Securitry.jpg';
 
-const SampleReactNativeComponent = () => {
+const StylingComponent = () => {
     return (
       <View>
         <Text style={styles.text}>Sample React Native Component</Text>
@@ -65,4 +65,4 @@ const SampleReactNativeComponent = () => {
     },
   });
 
-  export default SampleReactNativeComponent;
+  export default StylingComponent;
