@@ -17,6 +17,30 @@
       "email": "syahdanmijan@mail.com",
       "bidang": "Perdukunan",
       "id": 3
+    },
+    {
+      "nama": "Endy Muhardin",
+      "email": "endy@mail.com",
+      "bidang": "Java",
+      "id": 4
+    },
+    {
+      "nama": "Sandika Galih",
+      "email": "sandikagalih@mail.com",
+      "bidang": "PHP",
+      "id": 5
+    },
+    {
+      "nama": "Faqihza Mukhlish",
+      "email": "pukis@mail.com",
+      "bidang": "Python",
+      "id": 6
+    },
+    {
+      "nama": "Suroyo",
+      "email": "royo@mail.com",
+      "bidang": "Royo Roso",
+      "id": 7
     }
   ]
 }
