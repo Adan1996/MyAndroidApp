@@ -10,6 +10,7 @@ import StateDinamis from './pages/StateDinamis';
 import Communications from './pages/Communications';
 import ReactNativeSVG from './pages/ReactNativeSVG';
 import CallAPIVanila from './pages/CallApiVanila';
+import CallAPIAxios from './pages/CallApiAxios';
 
 // functional component
 const App = () => {
@@ -31,7 +32,8 @@ const App = () => {
         {/* <StateDinamis /> */}
         {/* <Communications /> */}
         {/* <ReactNativeSVG /> */}
-        <CallAPIVanila />
+        {/* <CallAPIVanila /> */}
+        <CallAPIAxios />
       </ScrollView>
     </View>
   );
