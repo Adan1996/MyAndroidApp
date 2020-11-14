@@ -1,11 +1,11 @@
 import Axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Button, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Alert, Button, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 
-const Item = ({nama, email, bidang, tekan}) => {
+const Item = ({nama, email, bidang, onSubmit, onDelete}) => {
     return (
         <View style={styles.itemContainer}>
-            <TouchableOpacity onPress={tekan}>
+            <TouchableOpacity onPress={onSubmit}>
                 <Image style={styles.avatar} source={{uri: `https://dummyimage.com/150/d4338b/000000.png&text=${nama}`}} />
             </TouchableOpacity>
             <View style={styles.desc}>
@@ -13,7 +13,9 @@ const Item = ({nama, email, bidang, tekan}) => {
                 <Text style={styles.descEmail}>{email}</Text>
                 <Text style={styles.descBidang}>{bidang}</Text>
             </View>
-            <Text style={styles.delete}>x</Text>
+            <TouchableOpacity onPress={onDelete}>
+                <Text style={styles.delete}>x</Text>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -75,6 +77,15 @@ const LocalAPI = () => {
         setButton("Update");
     }
 
+    const deleteItem = (item) => {
+        // console.log(item);
+        Axios.delete(`http://10.0.2.2:4000/users/${item.id}`)
+        .then(res => {
+            console.log(res);
+            getData();
+        })
+    }
+
     return (
         <View style={styles.container}>
             <Text>Masukkan nama karyawan Spentera</Text>
@@ -84,7 +95,20 @@ const LocalAPI = () => {
             <Button title={button} onPress={simpan} />
             <View style={styles.line} />
             {users.map(user => {
-                return <Item kry={user.id} nama={user.nama} email={user.email} bidang={user.bidang} tekan={() => selectItem(user)} />
+                return <Item 
+                            key={user.id} 
+                            nama={user.nama} 
+                            email={user.email} 
+                            bidang={user.bidang} 
+                            onSubmit={() => selectItem(user)} 
+                            onDelete={() => Alert.alert(
+                                                        'Peringatan', 
+                                                        'Apakah anda yakin ingin menghapus pesan ini?', 
+                                                        [
+                                                            {text: 'Tidak', onPress: () => console.log('button tidak')}, 
+                                                            {text: 'Ya', onPress: () => deleteItem(user)}
+                                                        ]
+                                                        )} />
             })}
             
         </View>
