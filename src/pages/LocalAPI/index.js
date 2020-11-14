@@ -1,15 +1,15 @@
 import Axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Image, StyleSheet, Text, TextInput, View } from 'react-native'
 
-const Item = () => {
+const Item = ({nama, email, bidang}) => {
     return (
         <View style={styles.itemContainer}>
-            <Image style={styles.avatar} source={{uri: "https://dummyimage.com/150/d4338b/000000.png&text=Avatar"}} />
+            <Image style={styles.avatar} source={{uri: `https://dummyimage.com/150/d4338b/000000.png&text=${nama}`}} />
             <View style={styles.desc}>
-                <Text style={styles.descName}>Nama Lengkap</Text>
-                <Text style={styles.descEmail}>Email</Text>
-                <Text style={styles.descBidang}>Bidang</Text>
+                <Text style={styles.descName}>{nama}</Text>
+                <Text style={styles.descEmail}>{email}</Text>
+                <Text style={styles.descBidang}>{bidang}</Text>
             </View>
             <Text style={styles.delete}>x</Text>
         </View>
@@ -20,6 +20,11 @@ const LocalAPI = () => {
     const [nama, setNama] = useState("");
     const [email, setEmail] = useState("");
     const [bidang, setBidang] = useState("");
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        getData();
+    }, []);
 
     // fungsi untuk triger button simpan
     const simpan = () => {
@@ -33,6 +38,14 @@ const LocalAPI = () => {
             setNama("");
             setEmail("");
             setBidang("");
+            getData();
+        })
+    }
+
+    const getData = () => {
+        Axios.get('http://10.0.2.2:4000/users')
+        .then(res => {
+            setUsers(res.data);
         })
     }
     return (
@@ -43,9 +56,10 @@ const LocalAPI = () => {
             <TextInput style={styles.input} placeholder="Bidang" value={bidang} onChangeText={(value) => setBidang(value)} />
             <Button title="Simpan" onPress={simpan} />
             <View style={styles.line} />
-            <Item />
-            <Item />
-            <Item />
+            {users.map(user => {
+                return <Item kry={user.id} nama={user.nama} email={user.email} bidang={user.bidang} />
+            })}
+            
         </View>
     )
 }
