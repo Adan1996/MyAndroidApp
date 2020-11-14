@@ -1,11 +1,13 @@
 import Axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Button, Image, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Button, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 
-const Item = ({nama, email, bidang}) => {
+const Item = ({nama, email, bidang, tekan}) => {
     return (
         <View style={styles.itemContainer}>
-            <Image style={styles.avatar} source={{uri: `https://dummyimage.com/150/d4338b/000000.png&text=${nama}`}} />
+            <TouchableOpacity onPress={tekan}>
+                <Image style={styles.avatar} source={{uri: `https://dummyimage.com/150/d4338b/000000.png&text=${nama}`}} />
+            </TouchableOpacity>
             <View style={styles.desc}>
                 <Text style={styles.descName}>{nama}</Text>
                 <Text style={styles.descEmail}>{email}</Text>
@@ -21,6 +23,8 @@ const LocalAPI = () => {
     const [email, setEmail] = useState("");
     const [bidang, setBidang] = useState("");
     const [users, setUsers] = useState([]);
+    const [button, setButton] = useState("Simpan");
+    const [selectedUser, setSelectedUser] = useState({});
 
     useEffect(() => {
         getData();
@@ -33,13 +37,26 @@ const LocalAPI = () => {
             email,
             bidang
         }
-        Axios.post('http://10.0.2.2:4000/users', data)
-        .then(res => {
-            setNama("");
-            setEmail("");
-            setBidang("");
-            getData();
-        })
+
+        if(button === "Simpan") {
+            Axios.post('http://10.0.2.2:4000/users', data)
+            .then(res => {
+                setNama("");
+                setEmail("");
+                setBidang("");
+                getData();
+            })
+        } else if(button === "Update") {
+            Axios.put(`http://10.0.2.2:4000/users/${selectedUser.id}`, data)
+            .then(res => {
+                console.log(res);
+                setNama("");
+                setEmail("");
+                setBidang("");
+                getData();
+                setButton("Simpan");
+            })
+        }
     }
 
     const getData = () => {
@@ -48,16 +65,26 @@ const LocalAPI = () => {
             setUsers(res.data);
         })
     }
+
+    const selectItem = (item) => {
+        console.log(item);
+        setSelectedUser(item);
+        setNama(item.nama);
+        setEmail(item.email);
+        setBidang(item.bidang);
+        setButton("Update");
+    }
+
     return (
         <View style={styles.container}>
             <Text>Masukkan nama karyawan Spentera</Text>
             <TextInput style={styles.input} placeholder="Nama Lengkap" value={nama} onChangeText={(value) => setNama(value)} />
             <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={(value) => setEmail(value)} />
             <TextInput style={styles.input} placeholder="Bidang" value={bidang} onChangeText={(value) => setBidang(value)} />
-            <Button title="Simpan" onPress={simpan} />
+            <Button title={button} onPress={simpan} />
             <View style={styles.line} />
             {users.map(user => {
-                return <Item kry={user.id} nama={user.nama} email={user.email} bidang={user.bidang} />
+                return <Item kry={user.id} nama={user.nama} email={user.email} bidang={user.bidang} tekan={() => selectItem(user)} />
             })}
             
         </View>
