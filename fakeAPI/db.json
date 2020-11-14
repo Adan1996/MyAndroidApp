@@ -1,31 +1,22 @@
 {
-  "posts": [
+  "users": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "nama": "Syahdan Masyhuri",
+      "email": "syahdanmasyhuri@gmail.com",
+      "bidang": "IT Security"
     },
-    [
-      {
-        "title": "spentera",
-        "author": "syahdan"
-      }
-    ],
-    [
-      {
-        "title": "amin",
-        "author": "sukses"
-      }
-    ]
-  ],
-  "comments": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "nama": "Syahdan Mijan",
+      "email": "syahdanmijan@mail.com",
+      "bidang": "Perdukunan",
+      "id": 2
+    },
+    {
+      "nama": "Syahdan Mijan",
+      "email": "syahdanmijan@mail.com",
+      "bidang": "Perdukunan",
+      "id": 3
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

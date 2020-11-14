@@ -1,4 +1,5 @@
-import React from 'react'
+import Axios from 'axios'
+import React, { useState } from 'react'
 import { Button, Image, StyleSheet, Text, TextInput, View } from 'react-native'
 
 const Item = () => {
@@ -15,13 +16,32 @@ const Item = () => {
     )
 }
 const LocalAPI = () => {
+    // variable untuk input
+    const [nama, setNama] = useState("");
+    const [email, setEmail] = useState("");
+    const [bidang, setBidang] = useState("");
+
+    // fungsi untuk triger button simpan
+    const simpan = () => {
+        const data = {
+            nama,
+            email,
+            bidang
+        }
+        Axios.post('http://10.0.2.2:4000/users', data)
+        .then(res => {
+            setNama("");
+            setEmail("");
+            setBidang("");
+        })
+    }
     return (
         <View style={styles.container}>
             <Text>Masukkan nama karyawan Spentera</Text>
-            <TextInput style={styles.input} placeholder="Nama Lengkap" />
-            <TextInput style={styles.input} placeholder="Email" />
-            <TextInput style={styles.input} placeholder="Bidang" />
-            <Button title="Simpan" />
+            <TextInput style={styles.input} placeholder="Nama Lengkap" value={nama} onChangeText={(value) => setNama(value)} />
+            <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={(value) => setEmail(value)} />
+            <TextInput style={styles.input} placeholder="Bidang" value={bidang} onChangeText={(value) => setBidang(value)} />
+            <Button title="Simpan" onPress={simpan} />
             <View style={styles.line} />
             <Item />
             <Item />
