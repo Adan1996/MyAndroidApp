@@ -10,10 +10,16 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@types/styletron-engine-atomic": "^1.1.0",
+    "@types/styletron-react": "^5.0.2",
+    "@types/styletron-standard": "^2.0.1",
     "axios": "^0.21.0",
+    "baseui": "^9.105.0",
     "react": "16.13.1",
     "react-native": "0.63.3",
     "react-native-svg": "^12.1.0",
+    "styletron-engine-atomic": "^1.4.6",
+    "styletron-react": "^5.2.7",
     "yarn": "^1.22.10"
   },
   "devDependencies": {

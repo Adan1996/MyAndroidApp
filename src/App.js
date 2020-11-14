@@ -11,6 +11,7 @@ import Communications from './pages/Communications';
 import ReactNativeSVG from './pages/ReactNativeSVG';
 import CallAPIVanila from './pages/CallApiVanila';
 import CallAPIAxios from './pages/CallApiAxios';
+import LocalAPI from './pages/LocalAPI';
 
 // functional component
 const App = () => {
@@ -33,7 +34,8 @@ const App = () => {
         {/* <Communications /> */}
         {/* <ReactNativeSVG /> */}
         {/* <CallAPIVanila /> */}
-        <CallAPIAxios />
+        {/* <CallAPIAxios /> */}
+        <LocalAPI />
       </ScrollView>
     </View>
   );

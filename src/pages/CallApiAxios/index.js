@@ -16,11 +16,6 @@ const CallAPIAxios = () => {
     })
 
     const getData = () => {
-        // fetch('https://reqres.in/api/users/2')
-        //     .then(response => response.json())
-        //     .then(json => {
-        //         setDataUser(json.data)
-        //     })
         Axios.get('https://reqres.in/api/users/4')
         .then(result => {
             setDataUser(result.data.data)
