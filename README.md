@@ -14,3 +14,8 @@ yarn start
 ```
 yarn android
 ```
+
+# JSON Server
+```
+json-server --watch fakeAPI/db.json --port 4000
+```
